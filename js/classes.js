@@ -86,6 +86,7 @@ class Fighter extends Sprite {
     }
     this.color = color
     this.isAttacking
+    this.isJumping = false
     this.health = 100
     this.framesCurrent = 0
     this.framesElapsed = 0
@@ -180,6 +181,7 @@ class Fighter extends Sprite {
           this.framesMax = this.sprites.jump.framesMax
           this.framesCurrent = 0
         }
+        this.isJumping = true;
         break
 
       case 'fall':
@@ -188,6 +190,7 @@ class Fighter extends Sprite {
           this.framesMax = this.sprites.fall.framesMax
           this.framesCurrent = 0
         }
+        this.isJumping = true;
         break
 
       case 'attack1':

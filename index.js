@@ -197,6 +197,8 @@ function animate() {
     player.switchSprite('jump')
   } else if (player.velocity.y > 0) {
     player.switchSprite('fall')
+  } else if (player.velocity.y === 0) {
+    player.isJumping = false
   }
 
   // Enemy movement
@@ -215,6 +217,8 @@ function animate() {
     enemy.switchSprite('jump')
   } else if (enemy.velocity.y > 0) {
     enemy.switchSprite('fall')
+  } else if (enemy.velocity.y === 0) {
+    enemy.isJumping = false
   }
 
   // detect for collision & enemy gets hit
@@ -281,7 +285,9 @@ window.addEventListener('keydown', (event) => {
         player.lastKey = 'a'
         break
       case 'w':
-        player.velocity.y = -20
+        if (player.isJumping === false) {
+          player.velocity.y = -20
+        }
         break
       case ' ':
         player.attack()
@@ -300,7 +306,9 @@ window.addEventListener('keydown', (event) => {
         enemy.lastKey = 'ArrowLeft'
         break
       case 'ArrowUp':
-        enemy.velocity.y = -20
+        if ( enemy.isJumping === false ) {
+          enemy.velocity.y = -20
+        }
         break
       case 'ArrowDown':
         enemy.attack()
